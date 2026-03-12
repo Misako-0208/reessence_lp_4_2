@@ -1,0 +1,17 @@
+# Dependencies
+node_modules/
+.pnpm-store/
+
+# Next.js
+.next/
+out/
+
+# Environment (接続情報などが含まれるためコミットしない)
+.env
+.env.local
+.env*.local
+
+# Debug
+npm-debug.log*
+*.log
+.DS_Store

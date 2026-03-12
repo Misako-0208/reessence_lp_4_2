@@ -1,0 +1,64 @@
+"use client"
+
+import { useEffect, useState } from "react"
+
+const STORAGE_KEY = "reessence_exit_popup_shown"
+
+export function ExitIntentPopup() {
+  const [open, setOpen] = useState(false)
+
+  useEffect(() => {
+    if (typeof window === "undefined") return
+
+    const alreadyShown = window.sessionStorage.getItem(STORAGE_KEY)
+    if (alreadyShown) return
+
+    const handleMouseLeave = (event: MouseEvent) => {
+      if (event.clientY <= 0) {
+        window.sessionStorage.setItem(STORAGE_KEY, "1")
+        setOpen(true)
+      }
+    }
+
+    window.addEventListener("mouseout", handleMouseLeave)
+    return () => window.removeEventListener("mouseout", handleMouseLeave)
+  }, [])
+
+  if (!open) return null
+
+  return (
+    <div className="fixed inset-0 z-[60] flex items-center justify-center bg-black/60 px-4">
+      <div className="w-full max-w-sm rounded-2xl bg-card p-5 shadow-xl">
+        <p className="text-xs font-medium uppercase tracking-widest text-accent">
+          {"少し待ってください"}
+        </p>
+        <h2 className="mt-2 text-base font-bold text-card-foreground">
+          {"「私ってPMSなの？」と思ったら読む症状日誌ガイドを受け取りませんか？"}
+        </h2>
+        <p className="mt-2 text-xs text-muted-foreground">
+          {"PMSかもしれないと思ったときに、日々の症状を整理して医療機関にも共有しやすくなる"}
+          <br />
+          {"症状日誌のつけ方をまとめたPDFを無料でお送りします。"}
+        </p>
+
+        <div className="mt-4 space-y-2">
+          <a
+            href="#monitor"
+            onClick={() => setOpen(false)}
+            className="inline-flex w-full items-center justify-center rounded-full bg-primary px-5 py-2 text-xs font-semibold text-primary-foreground transition-transform hover:scale-105"
+          >
+            {"症状日誌ガイドを受け取る（無料）"}
+          </a>
+          <button
+            type="button"
+            onClick={() => setOpen(false)}
+            className="w-full text-center text-[11px] text-muted-foreground underline underline-offset-2"
+          >
+            {"今回はスキップする"}
+          </button>
+        </div>
+      </div>
+    </div>
+  )
+}
+
