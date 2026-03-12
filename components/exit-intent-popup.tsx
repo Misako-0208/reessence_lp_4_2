@@ -14,13 +14,13 @@ export function ExitIntentPopup() {
     if (alreadyShown) return
 
     const handleMouseLeave = (event: MouseEvent) => {
-      if (event.clientY <= 0) {
-        window.sessionStorage.setItem(STORAGE_KEY, "1")
-        setOpen(true)
-      }
+      if (event.clientY > 0) return
+      if (window.sessionStorage.getItem(STORAGE_KEY)) return
+      window.sessionStorage.setItem(STORAGE_KEY, "1")
+      setOpen(true)
     }
 
-    window.addEventListener("mouseout", handleMouseLeave)
+    window.addEventListener("mouseout", handleMouseLeave, { passive: true })
     return () => window.removeEventListener("mouseout", handleMouseLeave)
   }, [])
 
