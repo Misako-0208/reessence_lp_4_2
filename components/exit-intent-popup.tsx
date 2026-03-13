@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react"
 
-const STORAGE_KEY = "reessence_exit_popup_shown"
+const STORAGE_KEY = "reessence_pdf_popup_shown"
 
 export function ExitIntentPopup() {
   const [open, setOpen] = useState(false)
@@ -13,22 +13,31 @@ export function ExitIntentPopup() {
     const alreadyShown = window.sessionStorage.getItem(STORAGE_KEY)
     if (alreadyShown) return
 
-    const handleMouseLeave = (event: MouseEvent) => {
-      if (event.clientY > 0) return
+    const handleScroll = () => {
+      const scrollable =
+        document.documentElement.scrollHeight - window.innerHeight
+      if (scrollable <= 0) return
+
+      const ratio = window.scrollY / scrollable
+      if (ratio < 0.5) return
       if (window.sessionStorage.getItem(STORAGE_KEY)) return
+
       window.sessionStorage.setItem(STORAGE_KEY, "1")
       setOpen(true)
+      window.removeEventListener("scroll", handleScroll)
     }
 
-    window.addEventListener("mouseout", handleMouseLeave, { passive: true })
-    return () => window.removeEventListener("mouseout", handleMouseLeave)
+    window.addEventListener("scroll", handleScroll, { passive: true })
+    handleScroll()
+
+    return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
   if (!open) return null
 
   return (
-    <div className="fixed inset-0 z-[60] flex items-center justify-center bg-black/60 px-4">
-      <div className="w-full max-w-sm rounded-2xl bg-card p-5 shadow-xl">
+    <div className="pointer-events-none fixed inset-x-0 bottom-0 z-[60] px-4 pb-6">
+      <div className="pointer-events-auto mx-auto w-full max-w-sm rounded-2xl bg-card p-5 shadow-xl">
         <p className="text-xs font-medium uppercase tracking-widest text-accent">
           {"少し待ってください"}
         </p>

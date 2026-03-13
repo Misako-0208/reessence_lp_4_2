@@ -10,6 +10,7 @@ import { VideoSection } from "@/components/video-section"
 import { PricingSection } from "@/components/pricing-section"
 import { MonitorSection } from "@/components/monitor-section"
 import { Footer } from "@/components/footer"
+import { PdfBanner } from "@/components/pdf-banner"
 
 export default function Page() {
   return (
@@ -45,6 +46,9 @@ export default function Page() {
 
         {/* 9. PDFプレゼント（症状日誌ガイド） */}
         <MonitorSection />
+
+        {/* 9-2. もう一度PDFへの導線 */}
+        <PdfBanner />
       </main>
 
       {/* 10. フッター */}
