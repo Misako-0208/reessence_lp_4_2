@@ -6,6 +6,7 @@ import './globals.css'
 import { ExitIntentPopup } from '@/components/exit-intent-popup'
 
 const clarityProjectId = process.env.NEXT_PUBLIC_CLARITY_PROJECT_ID ?? process.env.NEXT_PUBLIC_CLARITY_ID ?? ''
+const gaMeasurementId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID ?? ''
 
 const geist = Geist({
   subsets: ['latin'],
@@ -54,6 +55,22 @@ export default function RootLayout({
         </div>
         <ExitIntentPopup />
         <Analytics />
+        {gaMeasurementId && (
+          <>
+            <Script
+              src={`https://www.googletagmanager.com/gtag/js?id=${gaMeasurementId}`}
+              strategy="afterInteractive"
+            />
+            <Script id="google-analytics-gtag" strategy="afterInteractive">
+              {`
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', '${gaMeasurementId}');
+              `}
+            </Script>
+          </>
+        )}
         {clarityProjectId && (
           <Script id="clarity-script" strategy="afterInteractive">
             {`(function(c,l,a,r,i,t,y){
