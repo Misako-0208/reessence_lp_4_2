@@ -1,13 +1,17 @@
 import { NextResponse } from "next/server"
 import { neon } from "@neondatabase/serverless"
+import { Resend } from "resend"
 
 const connectionString = process.env.NEON_DATABASE_URL
+const resendApiKey = process.env.RESEND_API_KEY
+const fromEmail = process.env.PDF_FROM_EMAIL ?? "ReEssence <onboarding@resend.dev>"
 
 if (!connectionString) {
   console.warn("NEON_DATABASE_URL is not set. /api/monitor-apply will fail until configured.")
 }
 
 const sql = connectionString ? neon(connectionString) : null
+const resend = resendApiKey ? new Resend(resendApiKey) : null
 
 export async function POST(request: Request) {
   try {
@@ -61,6 +65,26 @@ export async function POST(request: Request) {
         ${wearableDevice}, ${smartphoneOs}, 'lp', NOW()
       )
     `
+
+    const toAddr = email.trim()
+    if (resend) {
+      try {
+        await resend.emails.send({
+          from: fromEmail,
+          to: toAddr,
+          subject: "【ReEssence】モニター応募を受け付けました",
+          html: `<p>${name.trim()} 様</p>
+<p>このたびはモニター募集にお申し込みいただき、ありがとうございます。</p>
+<p>内容を確認のうえ、担当よりご連絡いたします。</p>
+<p>本メールは送信専用です。ご返信いただいてもお答えできない場合がございます。</p>
+<p>ReEssence</p>`,
+        })
+      } catch (mailErr) {
+        console.error("[monitor-apply] Resend send failed (application still saved):", mailErr)
+      }
+    } else {
+      console.warn("RESEND_API_KEY is not set. Monitor application saved but no confirmation email sent.")
+    }
 
     return NextResponse.json({ ok: true })
   } catch (error) {
