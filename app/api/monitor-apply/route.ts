@@ -13,6 +13,9 @@ if (!connectionString) {
 const sql = connectionString ? neon(connectionString) : null
 const resend = resendApiKey ? new Resend(resendApiKey) : null
 
+/** チャネル識別（例: instagram_ads / instagram_profile / threads）。Vercel プロジェクトごとに設定。 */
+const monitorSource = process.env.MONITOR_APPLICATION_SOURCE?.trim() || "lp"
+
 export async function POST(request: Request) {
   try {
     const body = await request.json()
@@ -62,7 +65,7 @@ export async function POST(request: Request) {
       ) VALUES (
         ${name.trim()}, ${postalCode.trim()}, ${address.trim()}, ${email.trim()},
         ${!!agreeSkinStop}, ${!!agreeNotPregnant}, ${!!agreeAppDownload},
-        ${wearableDevice}, ${smartphoneOs}, 'lp', NOW()
+        ${wearableDevice}, ${smartphoneOs}, ${monitorSource}, NOW()
       )
     `
 
