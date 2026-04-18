@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from "react"
+import { useRouter } from "next/navigation"
 import Link from "next/link"
 import { ChevronLeft } from "lucide-react"
 import { Input } from "@/components/ui/input"
@@ -17,9 +18,10 @@ import {
 } from "@/components/ui/dialog"
 import { ScrollArea } from "@/components/ui/scroll-area"
 
-type Status = "idle" | "submitting" | "success" | "error"
+type Status = "idle" | "submitting" | "error"
 
 export default function MonitorPage() {
+  const router = useRouter()
   const [name, setName] = useState("")
   const [postalCode, setPostalCode] = useState("")
   const [address, setAddress] = useState("")
@@ -93,38 +95,11 @@ export default function MonitorPage() {
         const data = await res.json().catch(() => ({}))
         throw new Error(data.error || "送信に失敗しました。")
       }
-      setStatus("success")
+      router.replace("/monitor/thanks")
     } catch (err) {
       setStatus("error")
       setErrorMessage(err instanceof Error ? err.message : "送信に失敗しました。時間をおいて再度お試しください。")
     }
-  }
-
-  if (status === "success") {
-    return (
-      <div className="min-h-screen bg-background">
-        <header className="sticky top-0 z-10 border-b border-border bg-background/95 px-4 py-3">
-          <Link
-            href="/"
-            className="inline-flex items-center gap-1 text-sm font-medium text-foreground"
-          >
-            <ChevronLeft className="size-4" />
-            トップへ
-          </Link>
-        </header>
-        <main className="px-5 py-12">
-          <div className="rounded-xl border border-border bg-card p-5 text-center">
-            <h1 className="text-lg font-bold text-foreground">送信が完了しました</h1>
-            <p className="mt-3 text-sm text-muted-foreground">
-              ご応募ありがとうございます。内容を確認のうえ、ご連絡させていただきます。
-            </p>
-            <Button asChild className="mt-6">
-              <Link href="/">トップページへ戻る</Link>
-            </Button>
-          </div>
-        </main>
-      </div>
-    )
   }
 
   return (
