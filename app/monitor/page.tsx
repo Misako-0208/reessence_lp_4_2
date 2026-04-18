@@ -1,7 +1,6 @@
 "use client"
 
 import { useState } from "react"
-import { useRouter } from "next/navigation"
 import Link from "next/link"
 import { ChevronLeft } from "lucide-react"
 import { Input } from "@/components/ui/input"
@@ -21,7 +20,6 @@ import { ScrollArea } from "@/components/ui/scroll-area"
 type Status = "idle" | "submitting" | "error"
 
 export default function MonitorPage() {
-  const router = useRouter()
   const [name, setName] = useState("")
   const [postalCode, setPostalCode] = useState("")
   const [address, setAddress] = useState("")
@@ -95,7 +93,8 @@ export default function MonitorPage() {
         const data = await res.json().catch(() => ({}))
         throw new Error(data.error || "送信に失敗しました。")
       }
-      router.replace("/monitor/thanks")
+      // フル遷移（アプリ内ブラウザでもアドレスバーが /monitor/thanks に確実に変わる）
+      window.location.replace(`${window.location.origin}/monitor/thanks`)
     } catch (err) {
       setStatus("error")
       setErrorMessage(err instanceof Error ? err.message : "送信に失敗しました。時間をおいて再度お試しください。")
