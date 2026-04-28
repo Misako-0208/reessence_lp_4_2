@@ -32,7 +32,15 @@ export default function MonitorThanksPage() {
         <div className="rounded-xl border border-border bg-card p-5 text-center">
           <h1 className="text-lg font-bold text-foreground">送信が完了しました</h1>
           <p className="mt-3 text-sm text-muted-foreground">
-            ご応募ありがとうございます。内容を確認のうえ、ご連絡させていただきます。
+            ご応募ありがとうございます。
+            <br />
+            自動でメールが送信されておりますので、
+            <br />
+            ご確認願います。
+            <br />
+            <span className="text-[10px]">（迷惑メールとして振り分けられるケースもございます。）</span>
+            <br />
+            ご不明点あればお気軽にご連絡くださいませ。
           </p>
           <Button asChild className="mt-6">
             <Link href="/">トップページへ戻る</Link>

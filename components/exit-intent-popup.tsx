@@ -1,14 +1,21 @@
 "use client"
 
 import { useEffect, useState } from "react"
+import { usePathname } from "next/navigation"
 
 const STORAGE_KEY = "reessence_pdf_popup_shown"
 
 export function ExitIntentPopup() {
+  const pathname = usePathname()
   const [open, setOpen] = useState(false)
+  const isMonitorPage = pathname?.startsWith("/monitor")
 
   useEffect(() => {
     if (typeof window === "undefined") return
+    if (isMonitorPage) {
+      setOpen(false)
+      return
+    }
 
     const alreadyShown = window.sessionStorage.getItem(STORAGE_KEY)
     if (alreadyShown) return
@@ -31,7 +38,7 @@ export function ExitIntentPopup() {
     handleScroll()
 
     return () => window.removeEventListener("scroll", handleScroll)
-  }, [])
+  }, [isMonitorPage])
 
   if (!open) return null
 
