@@ -15,8 +15,8 @@ if (!connectionString) {
 const sql = connectionString ? neon(connectionString) : null
 const resend = resendApiKey ? new Resend(resendApiKey) : null
 
-/** チャネル識別（例: instagram_ads / instagram_profile / threads）。Vercel プロジェクトごとに設定。 */
-const monitorSource = process.env.MONITOR_APPLICATION_SOURCE?.trim() || "lp"
+/** チャネル識別（例: lp1-2 / instagram_ads）。未設定時はこの LP 用の既定値。 */
+const monitorSource = process.env.MONITOR_APPLICATION_SOURCE?.trim() || "lp1-2"
 const MONITOR_GUIDE_FILENAME = "【肌に貼るアロマシール】モニター説明資料.pdf"
 
 function getMonitorGuidePath(): string {
@@ -104,7 +104,8 @@ iOSの方：<br />
 <a href="https://testflight.apple.com/join/1czM9VtG">https://testflight.apple.com/join/1czM9VtG</a><br />
 ベータ版のため、TestFlightのダウンロードの許可をお願いいたします。<br /><br />
 Androidの方：<br />
-<a href="https://play.google.com/apps/internaltest/4701642921159415939">https://play.google.com/apps/internaltest/4701642921159415939</a></p>
+<a href="https://play.google.com/apps/internaltest/4701642921159415939">https://play.google.com/apps/internaltest/4701642921159415939</a><br />
+「download it on Google Play」をクリックしてください</p>
 <p><strong>STEP2: 初期設定（3分）</strong><br />
 ダウンロード後、いくつか質問が表示されますので、入力を進めてください。</p>
 <p><strong>STEP3: 生理日設定（1分）</strong><br />
