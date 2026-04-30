@@ -104,6 +104,7 @@ iOSの方：<br />
 <a href="https://testflight.apple.com/join/1czM9VtG">https://testflight.apple.com/join/1czM9VtG</a><br />
 ベータ版のため、TestFlightのダウンロードの許可をお願いいたします。<br /><br />
 Androidの方：<br />
+アドレスの登録が必要なため、このメールが送付されてから１日程度経ってからリンクをクリックしてください。<br />
 <a href="https://play.google.com/apps/internaltest/4701642921159415939">https://play.google.com/apps/internaltest/4701642921159415939</a><br />
 「download it on Google Play」をクリックしてください</p>
 <p><strong>STEP2: 初期設定（3分）</strong><br />
