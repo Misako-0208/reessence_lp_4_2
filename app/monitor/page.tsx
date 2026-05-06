@@ -178,6 +178,9 @@ export default function MonitorPage() {
               required
               className="h-10"
             />
+            <p className="text-xs text-muted-foreground">
+              Androidの方はGmailアドレスを入力してください。
+            </p>
           </div>
 
           <div className="rounded-xl border border-border bg-muted/30 p-4 space-y-4">

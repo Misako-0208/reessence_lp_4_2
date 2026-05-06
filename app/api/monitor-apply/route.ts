@@ -108,7 +108,8 @@ Androidの方：<br />
 <a href="https://play.google.com/apps/internaltest/4701642921159415939">https://play.google.com/apps/internaltest/4701642921159415939</a><br />
 「download it on Google Play」をクリックしてください</p>
 <p><strong>STEP2: 初期設定（3分）</strong><br />
-ダウンロード後、いくつか質問が表示されますので、入力を進めてください。</p>
+ダウンロード後、いくつか質問が表示されますので、入力を進めてください。<br />
+途中でサインイン画面（ページ最下部に「Secured by Clerk」と表示）が現れた場合は、ページ下部の「Don’t have an account? Sign up」をクリックして初期登録をしてください。</p>
 <p><strong>STEP3: 生理日設定（1分）</strong><br />
 ダッシュボードの円グラフ中央に「生理日設定ボタン」があります。<br />
 遷移した画面で前回の生理日と生理周期を入力し、設定を保存してください。</p>
