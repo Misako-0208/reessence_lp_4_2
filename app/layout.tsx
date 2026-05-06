@@ -14,7 +14,7 @@ const geist = Geist({
 })
 
 export const metadata: Metadata = {
-  title: 'ReEssence | 肌に貼るアロマシールで生理前でも挑戦しよう',
+  title: 'ReEssence | 肌に貼るアロマシールで生理前の不調、忘れよう',
   description:
     '肌に貼るアロマシール「ReEssence」。わずか0.4秒で気持ちを切り替え、生理前の不調に悩む毎日から解放されましょう。ゼラニウム・ラベンダーの香りで楽しくフェムケア。',
   generator: 'v0.app',
