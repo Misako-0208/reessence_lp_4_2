@@ -1,6 +1,4 @@
 export function VideoSection() {
-  const videoId = "Dn-8h5BbKnQ"
-
   return (
     <section className="py-14">
       <div className="px-5">
@@ -14,14 +12,15 @@ export function VideoSection() {
           </h2>
         </div>
 
-        <div className="mt-8">
-          <div className="relative aspect-video w-full overflow-hidden rounded-2xl bg-foreground/5 shadow-lg">
-            <iframe
-              src={`https://www.youtube.com/embed/${videoId}`}
+        <div className="mt-8 flex justify-center">
+          <div className="relative aspect-[9/16] w-full max-w-[280px] overflow-hidden rounded-2xl bg-foreground/5 shadow-lg">
+            <video
+              src="/videos/lp4-usage.mp4"
               title="アロマシール 使い方動画"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              allowFullScreen
-              className="absolute inset-0 h-full w-full"
+              controls
+              playsInline
+              preload="metadata"
+              className="h-full w-full object-cover"
             />
           </div>
         </div>

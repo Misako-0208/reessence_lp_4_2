@@ -2,8 +2,9 @@
 
 import { useEffect, useState } from "react"
 import { usePathname } from "next/navigation"
+import { pdfSignupCopy } from "@/lib/pdf-signup-copy"
 
-const STORAGE_KEY = "reessence_pdf_popup_shown"
+const STORAGE_KEY = "reessence_lp4_popup_shown"
 
 export function ExitIntentPopup() {
   const pathname = usePathname()
@@ -49,12 +50,13 @@ export function ExitIntentPopup() {
           {"少し待ってください"}
         </p>
         <h2 className="mt-2 text-base font-bold text-card-foreground">
-          {"「私ってPMSなの？」と思ったら読む症状日誌ガイドを受け取りませんか？"}
+          {pdfSignupCopy.headline}
+          <br />
+          {pdfSignupCopy.headlineSub}
+          {"を受け取りませんか？"}
         </h2>
         <p className="mt-2 text-xs text-muted-foreground">
-          {"PMSかもしれないと思ったときに、日々の症状を整理して医療機関にも共有しやすくなる"}
-          <br />
-          {"症状日誌のつけ方をまとめたPDFを無料でお送りします。"}
+          {pdfSignupCopy.body}
         </p>
 
         <div className="mt-4 space-y-2">
@@ -63,7 +65,7 @@ export function ExitIntentPopup() {
             onClick={() => setOpen(false)}
             className="inline-flex w-full items-center justify-center rounded-full bg-primary px-5 py-2 text-xs font-semibold text-primary-foreground transition-transform hover:scale-105"
           >
-            {"症状日誌ガイドを受け取る（無料）"}
+            {pdfSignupCopy.cta}
           </a>
           <button
             type="button"
@@ -77,4 +79,3 @@ export function ExitIntentPopup() {
     </div>
   )
 }
-

@@ -8,7 +8,9 @@ const connectionString = process.env.NEON_DATABASE_URL
 const resendApiKey = process.env.RESEND_API_KEY
 const fromEmail = process.env.PDF_FROM_EMAIL ?? "ReEssence <onboarding@resend.dev>"
 
-const PDF_FILENAME = "symptom-diary-guide.pdf"
+const PDF_FILENAME = "pms-care-guide.pdf"
+const PDF_ATTACHMENT_NAME = "PMS対策の選び方ガイド.pdf"
+const LEAD_SOURCE = "lp4"
 
 if (!connectionString) {
   console.warn("NEON_DATABASE_URL is not set. /api/monitor will fail until it is configured.")
@@ -38,7 +40,7 @@ export async function POST(request: Request) {
 
     await sql`
       INSERT INTO leads (name, email, source, created_at)
-      VALUES (${name ?? null}, ${email}, 'lp-pdf-signup', NOW())
+      VALUES (${name ?? null}, ${email}, ${LEAD_SOURCE}, NOW())
     `
 
     if (resend) {
@@ -48,7 +50,7 @@ export async function POST(request: Request) {
       if (hasPdf) {
         attachments = [
           {
-            filename: "症状日誌ガイド.pdf",
+            filename: PDF_ATTACHMENT_NAME,
             content: readFileSync(pdfPath),
           },
         ]
@@ -58,11 +60,11 @@ export async function POST(request: Request) {
         from: fromEmail,
         to: email,
         subject: hasPdf
-          ? "【ReEssence】症状日誌ガイドPDF"
-          : "【ReEssence】症状日誌ガイドへのご登録ありがとうございます",
+          ? "【ReEssence】PMS対策の選び方ガイド"
+          : "【ReEssence】PMS対策ガイドへのご登録ありがとうございます",
         html: hasPdf
-          ? `<p>${name ? `${name}様` : "ご登録者様"}</p><p>このたびは症状日誌ガイドPDFにお申し込みいただきありがとうございます。</p><p>PDFを添付してお送りします。ご確認ください。</p><p>ReEssence</p>`
-          : `<p>${name ? `${name}様` : "ご登録者様"}</p><p>このたびは症状日誌ガイドへのご登録ありがとうございます。</p><p>PDFは準備でき次第、改めてお送りいたします。</p><p>ReEssence</p>`,
+          ? `<p>${name ? `${name}様` : "ご登録者様"}</p><p>このたびはPMS対策の選び方ガイドにお申し込みいただきありがとうございます。</p><p>漢方・サプリ・肌に貼るケアなど、代表的なPMS対策を比較したPDFを添付してお送りします。ご確認ください。</p><p>ReEssence</p>`
+          : `<p>${name ? `${name}様` : "ご登録者様"}</p><p>このたびはPMS対策ガイドへのご登録ありがとうございます。</p><p>PDFは準備でき次第、改めてお送りいたします。</p><p>ReEssence</p>`,
         attachments,
       })
     } else {

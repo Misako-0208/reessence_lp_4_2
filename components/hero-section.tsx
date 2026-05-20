@@ -6,14 +6,14 @@ export function HeroSection() {
     <section className="relative flex min-h-screen min-h-[100dvh] flex-col overflow-hidden">
       {/* Background image */}
       <Image
-        src="/images/hero-aroma.jpg"
-        alt="肌に貼るアロマシール"
+        src="/images/hero-pms.png"
+        alt="手首に貼ったPMS向けアロマシール"
         fill
-        className="object-cover"
+        className="object-cover object-center"
         priority
       />
       {/* Overlay */}
-      <div className="absolute inset-0 bg-foreground/40" />
+      <div className="absolute inset-0 bg-foreground/20" />
 
       {/*
         縦位置: 画像の「端からの%」ではなく、ビューポート基準の padding + flex。

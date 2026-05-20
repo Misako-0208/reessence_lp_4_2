@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from "react"
+import { pdfSignupCopy } from "@/lib/pdf-signup-copy"
 
 type Status = 'idle' | 'submitting' | 'success' | 'error'
 
@@ -49,16 +50,14 @@ export function MonitorSection() {
       <div className="px-5">
         <div className="rounded-xl border border-border bg-card p-5">
           <p className="mb-2 text-xs font-medium tracking-widest text-accent">
-            {'PDFプレゼント'}
+            {pdfSignupCopy.eyebrow}
           </p>
           <h2 className="text-lg font-bold leading-snug text-card-foreground">
-            <span className="block">{'「私ってPMSなの？」と思ったら'}</span>
-            <span className="block">{'症状日誌のつけ方ガイドPDFを受け取る'}</span>
+            <span className="block">{pdfSignupCopy.headline}</span>
+            <span className="block">{pdfSignupCopy.headlineSub}</span>
           </h2>
           <p className="mt-3 text-xs text-muted-foreground">
-            {'PMSかもしれないと感じたときに、日々のからだや気分の変化を書き留めて'}
-            <br />
-            {'医療機関にも共有しやすくなる症状日誌のつけ方をまとめたPDFです。'}
+            {pdfSignupCopy.body}
           </p>
 
           <form onSubmit={handleSubmit} className="mt-5 space-y-3">
@@ -104,7 +103,7 @@ export function MonitorSection() {
 
             {status === 'success' ? (
               <p className="mt-2 rounded-md bg-secondary px-3 py-2 text-xs text-foreground">
-                {'送信が完了しました。症状日誌ガイドPDFのリンクをメールでお送りしますのでご確認ください。'}
+                {pdfSignupCopy.successMessage}
               </p>
             ) : (
               <button
@@ -112,7 +111,7 @@ export function MonitorSection() {
                 disabled={status === 'submitting'}
                 className="mt-3 inline-flex w-full items-center justify-center rounded-full bg-primary px-6 py-2.5 text-xs font-semibold text-primary-foreground transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-60"
               >
-                {status === 'submitting' ? '送信中...' : 'PDFを受け取る（無料）'}
+                {status === 'submitting' ? '送信中...' : pdfSignupCopy.cta}
               </button>
             )}
           </form>

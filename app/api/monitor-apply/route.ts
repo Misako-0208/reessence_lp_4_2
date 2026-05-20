@@ -15,8 +15,8 @@ if (!connectionString) {
 const sql = connectionString ? neon(connectionString) : null
 const resend = resendApiKey ? new Resend(resendApiKey) : null
 
-/** チャネル識別（例: lp1-2 / instagram_ads）。未設定時はこの LP 用の既定値。 */
-const monitorSource = process.env.MONITOR_APPLICATION_SOURCE?.trim() || "lp1-2"
+/** チャネル識別（例: lp4 / instagram_ads）。未設定時はこの LP 用の既定値。 */
+const monitorSource = process.env.MONITOR_APPLICATION_SOURCE?.trim() || "lp4"
 const MONITOR_GUIDE_FILENAME = "【肌に貼るアロマシール】モニター説明資料.pdf"
 
 function getMonitorGuidePath(): string {

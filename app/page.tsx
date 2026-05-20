@@ -25,25 +25,25 @@ export default function Page() {
         {/* 3. 価値の提案 */}
         <ValuePropositionSection />
 
-        {/* 4. 導き手（権威性） */}
-        <GuideSection />
-
-        {/* 5. 計画（利用ステップ） */}
-        <StepsSection />
-
-        {/* 6. 説明（ブランドストーリー） */}
-        <BrandStorySection />
-
-        {/* 6-2. FAQ */}
-        <FaqSection />
-
-        {/* 7. ビデオ */}
+        {/* 4. 使い方動画 */}
         <VideoSection />
 
-        {/* 8. 価格 */}
+        {/* 5. 導き手（権威性） */}
+        <GuideSection />
+
+        {/* 6. 計画（利用ステップ） */}
+        <StepsSection />
+
+        {/* 7. 説明（ブランドストーリー） */}
+        <BrandStorySection />
+
+        {/* 8. FAQ */}
+        <FaqSection />
+
+        {/* 9. 価格 */}
         <PricingSection />
 
-        {/* 9. PDFプレゼント（症状日誌ガイド） */}
+        {/* 10. PDFプレゼント（PMS対策ガイド） */}
         <MonitorSection />
       </main>
 
