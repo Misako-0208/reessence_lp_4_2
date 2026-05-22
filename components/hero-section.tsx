@@ -22,8 +22,8 @@ export function HeroSection() {
       <div className="relative z-10 flex flex-1 flex-col px-5 pt-[max(5rem,env(safe-area-inset-top,0px))] pb-6 text-center">
         <div>
           <h1 className="text-[1.7rem] font-bold leading-snug tracking-tight text-background">
-            <span className="block">{"肌に貼るアロマシールで"}</span>
-            <span className="block">{"生理前の不調、忘れよう"}</span>
+            <span className="block">{"生理前のしんどさ、"}</span>
+            <span className="block">{"貼るだけで変えよう。"}</span>
           </h1>
           <p className="mx-auto mt-5 text-sm leading-relaxed text-background/80">
             <span className="block">{"わずか0.4秒で気持ちを切り替え、"}</span>
