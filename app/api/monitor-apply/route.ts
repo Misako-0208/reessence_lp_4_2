@@ -101,8 +101,7 @@ export async function POST(request: Request) {
 <p><strong>STEP1: アプリのダウンロード</strong><br />
 以下リンクより、ダウンロードしてください。<br />
 iOSの方：<br />
-<a href="https://testflight.apple.com/join/1czM9VtG">https://testflight.apple.com/join/1czM9VtG</a><br />
-ベータ版のため、TestFlightのダウンロードの許可をお願いいたします。<br /><br />
+<a href="https://apps.apple.com/jp/app/kaorism/id6761862893">https://apps.apple.com/jp/app/kaorism/id6761862893</a><br /><br />
 Androidの方：<br />
 アドレスの登録が必要なため、このメールが送付されてから１日程度経ってからリンクをクリックしてください。<br />
 <a href="https://play.google.com/apps/internaltest/4701642921159415939">https://play.google.com/apps/internaltest/4701642921159415939</a><br />
