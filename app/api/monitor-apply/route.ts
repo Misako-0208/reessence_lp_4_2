@@ -103,9 +103,7 @@ export async function POST(request: Request) {
 iOSの方：<br />
 <a href="https://apps.apple.com/jp/app/kaorism/id6761862893">https://apps.apple.com/jp/app/kaorism/id6761862893</a><br /><br />
 Androidの方：<br />
-アドレスの登録が必要なため、このメールが送付されてから１日程度経ってからリンクをクリックしてください。<br />
-<a href="https://play.google.com/apps/internaltest/4701642921159415939">https://play.google.com/apps/internaltest/4701642921159415939</a><br />
-「download it on Google Play」をクリックしてください</p>
+<a href="https://play.google.com/store/apps/details?id=com.reessence.app&pli=1">https://play.google.com/store/apps/details?id=com.reessence.app&pli=1</a></p>
 <p><strong>STEP2: 初期設定（3分）</strong><br />
 ダウンロード後、いくつか質問が表示されますので、入力を進めてください。<br />
 途中でサインイン画面（ページ最下部に「Secured by Clerk」と表示）が現れた場合は、ページ下部の「Don’t have an account? Sign up」をクリックして初期登録をしてください。</p>
